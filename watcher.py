@@ -13,11 +13,11 @@ logging.basicConfig(level=logging.INFO)
 class Watcher:
     def __init__(self, account: str = "") -> None:
         self._account = account
-        self._ledger_state_version = self._current_state_version()
+        self._ledger_state_version = self._load_last_state_version()
 
-    def _current_state_version(self) -> int:
-        # Can be used to load the currently stored ledger state version
-        # of the last message from disk or database in case of a restart.
+    def _load_last_state_version(self) -> int:
+        # Can be used to load the last stored ledger state version of the last
+        # received message from disk or database in case of a restart.
         # Default is 0 and is therefore syncing from the beginning.
         # Warning: different accounts need to have their own stored state version!
         return 0
